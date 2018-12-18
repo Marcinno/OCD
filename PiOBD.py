@@ -1,16 +1,9 @@
 #PiOBD
-from libs import tcp_connection #async connection modules contains send funcs
-import threading
-import asyncio
-import time
+from libs import netTCP #async connection modules contains send funcs
+import request
 
-dataJson = {
-    'A' : 1,
-    'B' : 2,
-}
+# curl -H 'Content-Type: application/x-ndjson' -XPOST 'localhost:9200/bank/account/_bulk?pretty' --data-binary @accounts.json
+
+
 if __name__ == "__main__":
-    while True:
-        asyncio.run(tcp_connection.sendData(dataJson))
-        time.sleep(1) #testing loop
-
-    print("Elo")    
+    print("dupsko")
