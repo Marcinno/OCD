@@ -1,7 +1,7 @@
 import psycopg2
 from configparser import ConfigParser
 
-def config(filename = "database1.ini", section = "postgresql"):
+def config(filename = "database.ini", section = "pq1"):
     parser = ConfigParser()
     parser.read(filename)
 
@@ -28,10 +28,10 @@ class baseConnection:
         finally:
             print("Connected")
 
-    def makeQuery(self,query):
+    def makeQuery(self,query,params):
         # sql = """INSERT INTO test1 VALUES (2,3,'DUPA','1997-01-01');"""
         try:
-            self.cursor.execute(query)
+            self.cursor.execute(query,params)
             self.connection.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
