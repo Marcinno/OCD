@@ -1,8 +1,8 @@
 # About
-PiOBD is my engineer thesis
+OCD Obd Car Diagnostics is my engineering thesis
 
 ## Why?
-I'm interested in vehicle
+I'm interested in vehicle and i want to analysis my car's logs
 
 ## Next steps
 TODO
