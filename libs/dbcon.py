@@ -19,6 +19,7 @@ class baseConnection:
         self.config = config()
         self.connection = None
         try:
+            # while #TODO ADD internet connection checking
             params = self.config
             print("Try to connect to database")
             self.connection = psycopg2.connect(**params)
