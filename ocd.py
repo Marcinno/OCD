@@ -16,7 +16,7 @@ def setConnection():
     dbconnection = dbcon.baseConnection()
 
 def sendToDataBase():
-    sqlQuery = """INSERT INTO FST5 VALUES (%s,%s);""" #TODO check how many parameteres we want to send
+    sqlQuery = """INSERT INTO FIATSTILO VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);""" #Hard-Coded database name
     while (True):
         print("Debug1")
         if getobd.readValueQueue.not_empty:
@@ -29,17 +29,15 @@ if __name__ == "__main__":
     getobd.connect()
     
     if getobd.connection.status is True:
-        thread1 = Thread(target=getobd.readData, args=())
-        thread2 = Thread(target=sendToDataBase, args=())
+        readThread = Thread(target=getobd.readData, args=())
+        sendThread = Thread(target=sendToDataBase, args=())
 
-        thread1.start()
-        thread2.start()
+        readThread.start()
+        sendThread.start()
 
-        thread1.join()
-        thread2.join()
+        readThread.join()
+        sendThread.join()
 
-
-# optionally,  extra method ; to develop in future # 
 def readFromFile(): # method to read from file it's just test only
     with open('test1.txt') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')

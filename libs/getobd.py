@@ -11,12 +11,7 @@ readValueQueue = queue.Queue()
 valueList = None
 connection = None 
 timer = 0 
-#cmd = obd.commands.SPEED # select an OBD command (sensor)
-#response = connection.query(cmd) # send the command, and parse the response
-#print(response.value) # returns unit-bearing values thanks to Pint
-#print(response.value.to("mph")) # user-friendly unit conversions
-
-FSTILO = [1,2,4,5,6,7,11,12,13,14,15,16,18,20,21,22,29,30,32,33] # Hard-Coded values for defined car
+FSTILO = [4,5,10,12,13,17,33,47,49,67,92] # Hard-Coded values for defined car
 
 
 def connect():
