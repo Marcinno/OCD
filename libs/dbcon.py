@@ -1,9 +1,10 @@
 import psycopg2
 import urllib
 import time
+
 from configparser import ConfigParser
 
-def checkInternetConnection():
+def check_internet_connection():
     try:
         urllib.request.urlopen("https://www.google.com")
     except urllib.error.URLError:
@@ -27,26 +28,26 @@ def config(filename = "database.ini", section = "pq1"):
         raise Exception("Section {0} not found format{1}".format(section, filename))
         
     return dataBase
-class baseConnection:
+class BaseConnection:
     def __init__(self):
         self.config = config()
         self.connection = None
         try:
-            while checkInternetConnection() is not True:
+            while check_internet_connection() is not True:
                 print("Connection down")
                 time.sleep(3)
-                checkInternetConnection()
+                check_internet_connection()
 
             parameters = self.config
             print("Try to connect to database")
-            self.connection = psycopg2.connect(**parameters)
+            self.connection = psycopg2.connect(**parameters) # only under vpn
             self.cursor = self.connection.cursor()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:
             print("Connected")
 
-    def makeQuery(self,query,parameters):
+    def make_query(self,query,parameters):
         # sql = """INSERT INTO test1 VALUES (2,3,'TEST','1997-01-01');""" sample of query
         try:
             self.cursor.execute(query,parameters)

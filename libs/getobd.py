@@ -1,13 +1,12 @@
 import obd
 import csv
 import sys
-
 import time
 import datetime
 import queue
 
 
-readValueQueue = queue.Queue()
+read_value_queue = queue.Queue()
 valueList = None
 connection = None 
 timer = 0 
@@ -35,9 +34,9 @@ def connect():
         timer += 1
         connect()
     finally:
-        readData()
+        read_data()
 
-def readData():
+def read_data():
     while (True):
         valueList = None
         valueList.append(datetime.datetime.now())
@@ -45,7 +44,7 @@ def readData():
             command = obd.commands[1][i] # 1 is a default 
             response = connection.query(command,True)
             valueList.append(response.value.magnitude)
-        readValueQueue.put(valueList)
+        read_value_queue.put(valueList)
 
 # optionally,  extra method ; to develop in future # 
 def data():  # collecting data to csv file    
